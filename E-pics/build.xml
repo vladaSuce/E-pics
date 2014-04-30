@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Epics" basedir=".">
+
+	<property file="build.properties" />
+
+	<property name="build" value="${basedir}/build" />
+	<property name="dist" value="${basedir}/dist" />
+	<property name="docs" value="${basedir}/docs" />
+	<property name="lib" value="${basedir}/lib" />
+	<property name="src" value="${basedir}/src" />
+	<property name="web" value="${basedir}/web" />
+	<property name ="css" value="${basedir}/web/css"></property>
+	
+
+	<path id="classpath">
+		<fileset dir="${lib}" includes="*.jar" />
+	</path>
+
+	<!-- Delete all built files -->
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+		<delete file="${tomee.dir}/webapps/${earname}" />
+		<delete dir="${tomee.dir}/webapps/Epics" />
+	</target>
+
+	<target name="check-tomee" unless="tomee.dir">
+		<fail>
+			Property "tomee.dir" is not set. Please use the file
+			"build.properties" in this directory ${basedir} to
+			set this property. It must point to the directory which
+			contains the following directory: "bin", "conf", "webapps"
+			etc.
+		</fail>
+	</target>
+
+	<target name="check-environment">
+		<antcall target="check-tomee" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="init" depends="check-environment">
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+		<echo message="java.home = ${java.home}" />
+		<echo message="tomee.dir = ${tomee.dir}" />
+	</target>
+
+	<!-- Compile everything -->
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" classpathref="classpath" debug="true" />
+		<copy todir="${build}">
+			<fileset dir="${src}" includes="**/*.properties" />
+			<fileset dir="${src}" includes="**/*.xml" />
+		</copy>
+	</target>
+
+	<!-- War -->
+	<target name="war" depends="compile">
+		<war destfile="${dist}/${warname}" webxml="${web}/WEB-INF/web.xml">
+			<zipfileset dir="${web}">
+				<include name="*.jsp" />
+				<include name="*.css" />
+				<include name="*.js" />
+				<include name="js*" />
+				<include name="css/" />
+				<include name="css/js/"/>
+				<include name="img/"/>
+				<include name="*.png"/>
+				<include name="*.jpg"/>
+				<include name="*.html"/>
+				<include name="*.properties"/>
+				<include name="*.js"/>
+				<include name="js/jquery.easyModal.js"/>
+				<include name="js/jquery-1.10.1.js"/>
+				<include name="js/main.js"/>
+				<include name="js/modernizr-2.6.2-respond-1.1.0.min.js"/>
+				<include name="js/galleria/themes/classic/galleria.classic.min.js/"/>
+				<include name="js/galleria/*.js"/>
+				<include name="js/galleria/*"/>
+				<include name="js/galleria/themes/classic/galleria.classic.css"/>
+				<include name="js/galleria/themes/classic/galleria.classic.js"/>
+			</zipfileset>
+			
+			<classes dir="build">
+				<include name="entity/*.class" />
+				<include name="servlet/*.class" />
+				<include name="messages/*.properties" />
+				<include name="log4j.properties" />
+			</classes>
+		</war>
+	</target>
+
+	<!-- Jar -->
+	<target name="jar" depends="compile">
+		<mkdir dir="${dist}" />
+		<jar destfile="${dist}/${jarname}">
+			<zipfileset dir="${build}/META-INF" prefix="META-INF">
+				<include name="persistence.xml" />
+			</zipfileset>
+			<zipfileset dir="${build}">
+				<include name="entity/*.class" />
+				<include name="session/*.class" />
+			</zipfileset>
+		</jar>
+	</target>
+
+	<!-- Ear -->
+	<target name="ear" depends="jar,war">
+		<mkdir dir="${dist}" />
+		<mkdir dir="${web}"/>
+		<ear destfile="${dist}/${earname}" appxml="${build}/META-INF/application.xml">
+			<zipfileset dir="${dist}">
+				<include name="${jarname}" />
+				<include name="${warname}" />
+			
+			</zipfileset>
+		</ear>
+	</target>
+
+	<!-- Deploy  -->
+	<target name="deploy" depends="ear">
+		<copy todir="${tomee.dir}/webapps">
+			<fileset dir="${dist}" includes="${earname}" />
+		</copy>
+	</target>
+
+</project>

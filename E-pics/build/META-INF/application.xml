@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <display-name>E-pics</display-name>
+    
+    <module>
+        <web>
+            <web-uri>Epics.war</web-uri>
+            <context-root>/Epics</context-root>
+        </web>
+    </module>
+
+    <module>
+        <ejb>Epics.jar</ejb>
+    </module>
+</application>
