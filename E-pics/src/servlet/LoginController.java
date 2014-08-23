@@ -51,11 +51,12 @@ public class LoginController extends HttpServlet {
 			if (password == null || password.equals("")) {
 				greske.add(ResourceBundle.getBundle("messages.messages").getString("emptyPassword"));
 			}
-			
+			System.out.println(greske);
 			if(greske.size() == 0) {
 				User user = userDao.findUser(emailAdress, password);
-	
+				
 				if (user != null) {
+					System.out.println(user.toString());
 					HttpSession session = request.getSession(true);
 					session.setAttribute("user", user);
 					session.setAttribute("albums",albumDao.findAlbumsById(user));
@@ -66,12 +67,12 @@ public class LoginController extends HttpServlet {
 				else {
 					greske.add(ResourceBundle.getBundle("messages.messages").getString("badLogIn"));
 					request.setAttribute("greske", greske);
-					getServletContext().getRequestDispatcher("/IndexController").forward(request, response);
+					getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 					return;
 				}
 			} else {
 				request.setAttribute("greske", greske);
-				getServletContext().getRequestDispatcher("/IndexController").forward(request, response);
+				getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 				return;
 			}
 

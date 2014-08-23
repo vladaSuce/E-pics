@@ -66,6 +66,6 @@
 				</tr>
 			</table>							
 		</form>
-	<a href="./IndexController"></a><br />
+	<a href="./IndexController"><fmt:message key="index" /></a><br />
 	<body>
 </html>

@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+
+<fmt:setBundle basename="messages.messages"/>
 <html>
     <head>
         <title>E-pics updatePassword</title>
@@ -11,11 +10,11 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width">
     </head>
     <body>
-    <ul>
-			<c:forEach items="${greske}" var="greska">
-				<li>${greska}</li>
-			</c:forEach>
-			</ul>
+	<ul>
+		<c:forEach items="${greske}" var="greska">
+			<li>${greska}</li>
+		</c:forEach>
+		</ul>
     <form action="./UpdatePassword" method="post">
         <p>
         <label for="oldPassword" class="youmail" data-icon="e" > Your old paswword </label>
@@ -31,7 +30,7 @@ and open the template in the editor.
     </p>
     <p>
         <button name="ChangeOK" value="Change" type="submit">Accept </button>
-        <button name="=Change Cancel" value="Cancel"> Cancel</button>
+        <button name="=Change Cancel" value="Cancel" onclick="location.href='./IndexController'" formnovalidate> Cancel</button>
     </p>
     </form>
 </body>

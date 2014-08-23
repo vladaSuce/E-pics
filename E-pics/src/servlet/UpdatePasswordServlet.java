@@ -81,7 +81,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		if(greske.size() == 0) {
 			
 			if(!trenutnaLozinka.equals(user.getPassword())){
-				greske.add(ResourceBundle.getBundle("messages.messages").getString("nepostojecaLozinka"));
+				greske.add(ResourceBundle.getBundle("messages.messages").getString("passwordDoesntMatch"));
 			}
 			if(!novaLozinka.equals(potvrdjenaLozinka)){
 				greske.add(ResourceBundle.getBundle("messages.messages").getString("novaIpotvrdjenaNepoklapanje"));

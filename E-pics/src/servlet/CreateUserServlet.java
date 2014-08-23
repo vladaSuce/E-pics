@@ -74,7 +74,7 @@ public class CreateUserServlet extends HttpServlet {
 			user.setEmailNotifications(false);
 		
 		if(userDao.findUserByEmail(user.getEmailAdress())!=null)
-			greske.add(ResourceBundle.getBundle("messages.messages").getString("korisnickoImePrazno"));
+			greske.add(ResourceBundle.getBundle("messages.messages").getString("korisnickoImeUUpotrebi"));
 		
 		if(greske.size()==0){
 			userDao.insertUser(user);

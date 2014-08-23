@@ -41,7 +41,7 @@ and open the template in the editor.
         </p>
         <p>
             <button name="ChangeOK" value="Change" type="submit">Accept </button>
-            <button name="=Change Cancel" value="Cancel" type="reset"> Cancel</button>
+            <button name="=Change Cancel" value="Cancel" onclick="location.href='./IndexController'" formnovalidate> Cancel</button>
         </p>
         </form>
     </body>
