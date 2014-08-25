@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +31,7 @@ public class Comment implements Serializable {
 	@Column(name = "contents", nullable = true, unique = false)
 	protected String contents;
 	@Column(name = "date", nullable = true, unique = false)
-	protected String date;
+	protected Date date;
 	@ManyToOne(cascade={ALL}, fetch = FetchType.EAGER)
 	protected Photo photoComment;
 	@ManyToOne( cascade={ALL},fetch = FetchType.EAGER)
@@ -66,11 +67,11 @@ public class Comment implements Serializable {
 		this.contents = contents;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

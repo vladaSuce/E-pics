@@ -27,7 +27,7 @@ public class PreCommentController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String ida= request.getParameter("id");
-		System.out.println(ida+"u pre tagucontroller");
+		System.out.println(ida+"u pre kommentUKontroleru");
 		int id=Integer.parseInt(ida);
 		request.setAttribute("id", ida);
 		//getServletContext().setAttribute("id1",id);

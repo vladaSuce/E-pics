@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,9 +33,9 @@ public abstract class Image implements Serializable {
 	@Column(name = "height", unique = false, nullable = true)
 	protected int height;
 	@Column(name = "size", unique = false, nullable = true)
-	protected int size;
+	protected double size;
 	@Column(name = "uploadDate", unique = false, nullable = true)
-	protected String uploadDate;
+	protected Date uploadDate;
 
 
 
@@ -72,19 +73,19 @@ public abstract class Image implements Serializable {
 		this.height = height;
 	}
 
-	public int getSize() {
+	public double getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
+	public void setSize(double size) {
 		this.size = size;
 	}
 
-	public String getUploadDate() {
+	public Date getUploadDate() {
 		return uploadDate;
 	}
 
-	public void setUploadDate(String uploadDate) {
+	public void setUploadDate(Date uploadDate) {
 		this.uploadDate = uploadDate;
 	}
 

@@ -26,12 +26,6 @@
 				<tr>
 					<td>Contents:</td>
 					<td><input type="text" name="contents"></td>				
-				</tr>
-					<tr>
-					<td>Date:</td>
-					<td><input type="date" name="datum" ></td>
-					<td><input type="hidden" name="id_slike" value="${id}"></td> 				
-				</tr>
 				<tr>
 					
 					<td><input type="submit" name="submit" value="Comment"></td>				

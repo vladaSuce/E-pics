@@ -1,9 +1,13 @@
 package servlet;
 
+import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,6 +16,7 @@ import java.util.List;
 import java.util.Properties;
 
 import javax.ejb.EJB;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -66,6 +71,7 @@ public class AddPictureController extends HttpServlet {
 			while (iter.hasNext()) {
 				FileItem item = (FileItem) iter.next();
 				
+				 //photo.setSize(image.get);
 				String filename = item.getName();
 				
 				System.out.println("--------------------------------------");
@@ -127,11 +133,20 @@ public class AddPictureController extends HttpServlet {
 						File uploadedFile = new File(lokacija);
 						
 						item.write(uploadedFile);
-						
 						photo.setLocation("/img/" + filename);
+						BufferedImage bimg = ImageIO.read(uploadedFile);
+						photo.setWidth(bimg.getWidth());
+						photo.setHeight(bimg.getHeight());
+						double bytes = uploadedFile.length();
+						double kilobytes = (bytes /	1024);
+						photo.setSize(kilobytes);
 					}
 				}
 			}
+			
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			Date date = new Date();
+			photo.setUploadDate(date);
 			pictureDao.updatePhoto(photo);
 			
 	

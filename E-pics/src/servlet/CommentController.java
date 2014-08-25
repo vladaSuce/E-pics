@@ -1,7 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -45,7 +48,9 @@ public class CommentController extends HttpServlet {
 		Comment comm=new Comment();
 		comm.setContents(request.getParameter("contents"));
 		comm.setTitle(request.getParameter("title"));
-		comm.setDate(request.getParameter("datum"));
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		comm.setDate(date);
 		comm.setPhotoComment(p);
 		comm.setUserComments(u);
 		commentDao.persist(comm);
