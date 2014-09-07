@@ -119,5 +119,14 @@ public class UserDaoBean extends GenericDaoBean<User, Integer> implements UserDa
 			return users.get(0);
 		
 	}
+	public User findUserByID(int id_user){
+		Query q= em.createQuery("SELECT u from User u "
+				+ "where u.id = :id");
+		q.setParameter("id", id_user);
+		List<User>users=q.getResultList();
+		
+			return users.get(0);
+		
+	}
 
 }

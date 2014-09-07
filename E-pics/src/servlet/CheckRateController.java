@@ -45,9 +45,10 @@ public class CheckRateController extends HttpServlet {
 				
 				response.sendRedirect("PictureController?id="+id_pic);
 			}
-			else
-			response.sendRedirect("ratePhoto.jsp?id="+id_pic);
-			
+			else{
+			request.setAttribute("id", id_pic);	
+			request.getRequestDispatcher("/ratePhoto.jsp").forward(request, response);
+			}
 		}else
 			response.sendRedirect("IndexController");
 		

@@ -16,18 +16,19 @@
 			<li>${greska}</li>
 		</c:forEach>
 		</ul>
-		<form action="./CheckRateController" method="post"  accept-charset="ISO-8859-1">
+		<form action="./RateController" method="post"  accept-charset="ISO-8859-1">
 			<table>
 				<tr>
-					<td>Rate picture ${id}:</td>
+					<td>Rate picture "${id}":</td>
 					<td><select name="rate">
 						<option value=1>1</option>
 						<option value=2>2</option>
 						<option value=3>3</option>
 						<option value=4>4</option>
-						<option value=4>5</option>
-						</select>
+						<option value=5>5</option>
+						</select>				
 						</td>
+						<td><input type="hidden" name="id_slike" value="${id}"></td> 	
 				</tr>
 				<tr>
 					<td>&nbsp;</td>

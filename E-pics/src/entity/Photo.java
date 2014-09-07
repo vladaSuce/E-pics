@@ -52,7 +52,7 @@ public class Photo extends Image implements Serializable {
 	@Column(name = "comments_allowed", unique = false, nullable = true)
 	protected boolean commentsAllowed;
 	@Column(name = "rating", unique = false, nullable = true)
-	protected int rating;
+	protected double rating;
 	@Column(name = "thumnail_location", unique = false, nullable = true)
 	protected String thumbnailLocation;
 	@ManyToMany( cascade={ALL},fetch = FetchType.EAGER,mappedBy="photoTags")
@@ -123,11 +123,11 @@ public class Photo extends Image implements Serializable {
 		this.commentsAllowed = commentsAllowed;
 	}
 
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 

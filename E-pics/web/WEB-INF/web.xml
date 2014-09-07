@@ -138,4 +138,12 @@
       <servlet-name>WelcomeController</servlet-name>
       <url-pattern>/WelcomeController</url-pattern>
    </servlet-mapping>
+           <servlet>
+      <servlet-name>recentAcitvityController</servlet-name>
+      <servlet-class>servlet.RecentAcitvityController</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>recentAcitvityController</servlet-name>
+      <url-pattern>/recentAcitvityController</url-pattern>
+   </servlet-mapping>
  </web-app>

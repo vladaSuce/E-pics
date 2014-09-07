@@ -25,58 +25,66 @@ import session.UserDao;
 
 public class CommentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   @EJB
-   UserDao userDao;
-   @EJB
-   PhotoDao photoDao;
-   @EJB
-   CommentDao commentDao;
-    public CommentController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	@EJB
+	UserDao userDao;
+	@EJB
+	PhotoDao photoDao;
+	@EJB
+	CommentDao commentDao;
+	public CommentController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id_slika=request.getParameter("id_slike");
 		int idPhoto=Integer.parseInt(id_slika);
 		Photo p = photoDao.findById(idPhoto);
-		User u=(User)request.getSession().getAttribute("user");
-		Comment comm=new Comment();
-		comm.setContents(request.getParameter("contents"));
-		comm.setTitle(request.getParameter("title"));
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date date = new Date();
-		comm.setDate(date);
-		comm.setPhotoComment(p);
-		comm.setUserComments(u);
-		commentDao.persist(comm);
-		ArrayList<Comment> commUser=null;
-		if(u.getComments()==null){
-			commUser=new ArrayList<Comment>();
+		if(p.getCommentsAllowed()){
+			User u=(User)request.getSession().getAttribute("user");
+			Comment comm=new Comment();
+			comm.setContents(request.getParameter("contents"));
+			comm.setTitle(request.getParameter("title"));
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			Date date = new Date();
+			comm.setDate(date);
+			comm.setPhotoComment(p);
+			comm.setUserComments(u);
+			commentDao.persist(comm);
+			//		System.out.println("comm "+ comm.toString());
+			//		ArrayList<Comment> commUser=null;
+			//		if(u.getComments()==null){
+			//			commUser=new ArrayList<Comment>();
+			//		}
+			//		else{
+			//			commUser = u.getComments();
+			//		}
+			//		commUser.add(comm);
+			//		u.setComments(commUser);
+			//		userDao.merge(u);
+			System.out.println("user "+ u.toString());
+			ArrayList<Comment> pcomm = p.getPhotoComments();
+			pcomm.add(comm);
+			p.setPhotoComments(pcomm);
+			photoDao.merge(p);
+			System.out.println("picture "+ p.toString());
+			System.out.println("usao");
+			getServletContext().getRequestDispatcher("//PictureController?id="+idPhoto).forward(request, response);
 		}
-		else{
-		commUser = u.getComments();
+		else {
+			getServletContext().getRequestDispatcher("//PreCommentController?id="+idPhoto).forward(request, response);
 		}
-		commUser.add(comm);
-		u.setComments(commUser);
-		userDao.merge(u);
-		ArrayList<Comment> pcomm = p.getPhotoComments();
-		pcomm.add(comm);
-		p.setPhotoComments(pcomm);
-		photoDao.merge(p);
-		getServletContext().getRequestDispatcher("//PictureController?id="+idPhoto).forward(request, response);
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
 	}
 
 }

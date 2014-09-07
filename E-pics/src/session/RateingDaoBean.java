@@ -1,13 +1,25 @@
 package session;
 
+import static javax.ejb.TransactionAttributeType.REQUIRED;
+import static javax.ejb.TransactionManagementType.CONTAINER;
+
 import java.util.List;
 
+import javax.ejb.Local;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionManagement;
 import javax.persistence.Query;
 
 import entity.Photo;
 import entity.Rating;
 import entity.User;
-
+@Stateless
+@Local(RatingDao.class)
+@Remote(RatingDao.class)
+@TransactionManagement(CONTAINER)
+@TransactionAttribute(REQUIRED)
 public class RateingDaoBean extends GenericDaoBean<Rating, Integer> implements
 		RatingDao {
 

@@ -10,8 +10,10 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionManagement;
+import javax.persistence.Query;
 
 import entity.Comment;
+import entity.User;
 @Stateless
 @Local(CommentDao.class)
 @Remote(CommentDao.class)
@@ -75,9 +77,12 @@ public class CommentDaoBean extends GenericDaoBean<Comment, Integer> implements
 	}
 
 	@Override
-	public List<Comment> lastComments(int idUser) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Comment> lastComments(User user) {
+
+		Query q = em.createQuery("Select c from Comment c,User u,Photo p "
+				+ "where u=:user ");
+				q.setParameter("user", user);
+		return q.getResultList();
 	}
 
 	@Override

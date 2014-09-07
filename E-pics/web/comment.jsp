@@ -17,7 +17,7 @@
 			<li>${greska}</li>
 		</c:forEach>
 		</ul>
-		<form action="./CommentController" method="get" class="prijavaForma" accept-charset="ISO-8859-1">
+		<form action="./CommentController" method="post" class="prijavaForma" accept-charset="ISO-8859-1">
 			<table>
 				<tr>
 					<td>Title:</td>
@@ -25,7 +25,13 @@
 				</tr>
 				<tr>
 					<td>Contents:</td>
-					<td><input type="text" name="contents"></td>				
+					<td><input type="text" name="contents"></td>
+						</tr>
+					<tr>
+					
+					
+					<td><input type="hidden" name="id_slike" value="${id}"></td> 				
+				
 				<tr>
 					
 					<td><input type="submit" name="submit" value="Comment"></td>				

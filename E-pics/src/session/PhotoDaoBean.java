@@ -65,7 +65,12 @@ public class PhotoDaoBean extends GenericDaoBean<Photo, Integer> implements Phot
 	@Override
 	public void ratePhoto(int ocena, int idSlike) {
 		// TODO Auto-generated method stub
-
+		Photo p = findById(idSlike);
+		if(p.getRating()!=0)
+			p.setRating((p.getRating()+ ocena)/2);
+		else
+			p.setRating(ocena);
+		updatePhoto(p);
 	}
 
 	@Override

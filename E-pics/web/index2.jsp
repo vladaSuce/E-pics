@@ -55,8 +55,15 @@
                         <li><a id="changePersonal" href="updatePersonalData.jsp">Change personal data</a></li>
                         <li><a id="changePassword" href="updatePassword.jsp">Change password</a></li>
                         <li><a id="RSS" href="#">RSS</a></li>
+                        <li>Authors mail: </li>
+                        <li>${autor.emailAdress} </li>
+                        <li>Authors name: </li>
+                        <li>${autor.firstName} ${autor.lastName}</li>
+                        <li><a id="recentAcitvity" href="./recentAcitvityController?autor_id=${autor.id}">Recent Activity</a></li>
+                        <li><input type="hidden" value="${autor.id}" name="autor_id"></li>
                     </ul>
                 </div>
+
 </c:if>
                 <div class="galleria">
                 	<c:forEach items="${photos}" var="grupa">

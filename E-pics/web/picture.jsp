@@ -30,7 +30,11 @@
 	<!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-
+		<ul>
+		<c:forEach items="${greske}" var="greska">
+			<li>${greska}</li>
+		</c:forEach>
+		</ul>
 	<div class="header-container">
 		<header class="wrapper clearfix">
 			<h1 class="title">E-pics</h1>
@@ -99,7 +103,7 @@
 					<li><a id="comment" href="PreCommentController?id=${slika.id}">Comment</a></li>
 					<li><a id="addToFav" href="">Add to favorites</a></li>
 					<li><a id="follow" href="">Follow</a></li>
-					<li><a id="recentAct" href="">Recent activity </a></li>
+					
 					<li><a id="rate" href="CheckRateController?id=${slika.id}">Rate</a></li>
 				</ul>
 			</div>

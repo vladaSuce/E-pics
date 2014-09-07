@@ -14,4 +14,5 @@ public interface UserDao extends GenericDao<User, Integer> {
 	public User findUser(String email,String password);
 	public User findUserByEmail(String email);
 	public User findUserByPic(int id_pic);
+	public User findUserByID(int id_user);
 }
