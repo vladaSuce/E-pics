@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,7 +36,7 @@ public class Album implements Serializable {
 	protected String description;
 	@Column(name = "public", nullable = true, unique = false)
 	protected boolean Public;
-	@ManyToOne(cascade={ALL},fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	protected User user;
 	
 	@OneToOne(cascade={ALL}, fetch = FetchType.EAGER)

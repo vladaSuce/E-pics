@@ -63,7 +63,7 @@ public class Photo extends Image implements Serializable {
 	protected ArrayList<Comment> photoComments;
 	@OneToMany(cascade={ALL}, fetch = FetchType.EAGER, mappedBy = "photoRating")
 	protected ArrayList<Rating> photoRatings;
-	@ManyToMany(cascade={ALL}, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	protected ArrayList<Album> photosAlbums;
 
 

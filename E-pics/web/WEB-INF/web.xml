@@ -146,4 +146,28 @@
       <servlet-name>recentAcitvityController</servlet-name>
       <url-pattern>/recentAcitvityController</url-pattern>
    </servlet-mapping>
+           <servlet>
+      <servlet-name>deleteCommentController</servlet-name>
+      <servlet-class>servlet.DeleteCommentController</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>deleteCommentController</servlet-name>
+      <url-pattern>/DeleteCommentController</url-pattern>
+   </servlet-mapping>
+   <servlet>
+      <servlet-name>deleteTagController</servlet-name>
+      <servlet-class>servlet.DeleteTagController</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>deleteTagController</servlet-name>
+      <url-pattern>/DeleteTagController</url-pattern>
+   </servlet-mapping>
+      <servlet>
+      <servlet-name>DeletePictureController</servlet-name>
+      <servlet-class>servlet.DeletePictureController</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>DeletePictureController</servlet-name>
+      <url-pattern>/DeletePictureController</url-pattern>
+   </servlet-mapping>
  </web-app>

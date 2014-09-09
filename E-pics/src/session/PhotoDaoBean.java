@@ -3,6 +3,7 @@ package session;
 import static javax.ejb.TransactionAttributeType.REQUIRED;
 import static javax.ejb.TransactionManagementType.CONTAINER;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -37,10 +38,12 @@ public class PhotoDaoBean extends GenericDaoBean<Photo, Integer> implements Phot
 	public List<Photo> findPicsByUser(User user) {
 		
 		Query q=em.createNamedQuery("findAllPicturesByUserId");
-		q.setParameter("id", user.getId());
-		
-		List<Photo> photos = q.getResultList();
-		
+		List<Photo> photos = new ArrayList<>();
+		if(user!=null){
+			q.setParameter("id", user.getId());
+			photos = q.getResultList();
+		}
+
 		return photos;
 	}
 
@@ -98,6 +101,9 @@ public class PhotoDaoBean extends GenericDaoBean<Photo, Integer> implements Phot
 		List<Photo> photos = q.getResultList();
 		
 		return photos;
+	}
+	public void deletePhoto(Photo photo){
+		em.remove(em.merge(photo));
 	}
 
 }

@@ -15,4 +15,6 @@ public interface PhotoDao extends GenericDao<Photo, Integer> {
 	public void addToFavorites(int idSlike,int idUser);
 	public void ratePhoto(int ocena,int idSlike);
 	public void updatePhoto(Photo photo);
+	public Photo findById(Integer id);
+	
 }

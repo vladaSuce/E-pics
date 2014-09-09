@@ -21,7 +21,7 @@ import entity.User;
 @TransactionAttribute(REQUIRED)
 public class CommentDaoBean extends GenericDaoBean<Comment, Integer> implements
 		CommentDao {
-
+private Class<Comment> entityClass;
 	@Override
 	public Class<Comment> getEntityType() {
 		// TODO Auto-generated method stub
@@ -30,8 +30,10 @@ public class CommentDaoBean extends GenericDaoBean<Comment, Integer> implements
 
 	@Override
 	public Comment findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = em.createQuery("Select c from Comment c  "
+				+ "where c.id=:id ");
+				q.setParameter("id", id);
+		return (Comment) q.getResultList().get(0);
 	}
 
 	@Override
@@ -60,7 +62,7 @@ public class CommentDaoBean extends GenericDaoBean<Comment, Integer> implements
 
 	@Override
 	public void remove(Comment entity) {
-		// TODO Auto-generated method stub
+		em.remove(em.merge(entity));
 
 	}
 

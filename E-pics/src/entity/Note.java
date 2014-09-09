@@ -36,7 +36,7 @@ public class Note implements Serializable {
 	@Column(name = "y", nullable = true, unique = false)
 	protected int y;
 
-	@ManyToOne(cascade={ALL}, fetch = FetchType.EAGER)
+	@ManyToOne( fetch = FetchType.EAGER)
 	protected Photo photo;
 
 

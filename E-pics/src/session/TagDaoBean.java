@@ -10,7 +10,9 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionManagement;
+import javax.persistence.Query;
 
+import entity.Comment;
 import entity.Tag;
 @Stateless
 @Local(TagDao.class)
@@ -27,8 +29,10 @@ public class TagDaoBean extends GenericDaoBean<Tag, Integer> implements TagDao {
 
 	@Override
 	public Tag findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = em.createQuery("Select t from Tag t  "
+				+ "where t.id=:id ");
+				q.setParameter("id", id);
+		return (Tag) q.getResultList().get(0);
 	}
 
 	@Override
@@ -58,7 +62,7 @@ public class TagDaoBean extends GenericDaoBean<Tag, Integer> implements TagDao {
 	@Override
 	public void remove(Tag entity) {
 		// TODO Auto-generated method stub
-
+		em.remove(em.merge(entity));
 	}
 
 	@Override

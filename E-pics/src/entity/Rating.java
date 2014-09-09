@@ -27,9 +27,9 @@ public class Rating implements Serializable {
 	protected int id;
 	@Column(name = "vote", nullable = true, unique = false)
 	protected int vote;
-	@ManyToOne(cascade={ALL}, fetch = FetchType.EAGER)
+	@ManyToOne( fetch = FetchType.EAGER)
 	protected Photo photoRating;
-	@ManyToOne(cascade={ALL}, fetch = FetchType.EAGER)
+	@ManyToOne( fetch = FetchType.EAGER)
 	protected User userRating;
 
 	public Rating() {

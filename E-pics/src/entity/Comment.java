@@ -32,9 +32,9 @@ public class Comment implements Serializable {
 	protected String contents;
 	@Column(name = "date", nullable = true, unique = false)
 	protected Date date;
-	@ManyToOne(cascade={ALL}, fetch = FetchType.EAGER)
+	@ManyToOne( fetch = FetchType.EAGER)
 	protected Photo photoComment;
-	@ManyToOne( cascade={ALL},fetch = FetchType.EAGER)
+	@ManyToOne( fetch = FetchType.EAGER)
 	protected User userComments;
 
 
