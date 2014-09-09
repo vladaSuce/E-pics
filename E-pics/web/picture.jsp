@@ -67,21 +67,26 @@
 			
 			<br/>
 	
-			Comments
+			Tags :
 
 			<br/><c:forEach var="tag" items="${slika.tagsPhotos}">
 				<table >
 					<tr>
 						<td>${tag.text}</td>
-			
+						<c:if test="${user.id==autor.id && user!=null}">
+						<td><a href="./DeleteTagController?tagId=${tag.id}">delete tag</a></td>
+						</c:if>
 					</tr>
 				</table>
 			</c:forEach>
 			
 			<c:forEach var="komentar" items="${slika.photoComments}">
-				<table >
+				<table > Comments:
 					<tr>
 						<td>${komentar.contents}</td>
+						<c:if test="${user.id==autor.id && user!=null}">
+						<td><a href="./DeleteCommentController?tagId=${komentar.id}">delete comment</a></td>
+						</c:if>
 						<td><a href="<%=request.getContextPath()%>/IndexController?autor=${komentar.userComments.id}">${komentar.userComments.emailAdress}</a></td>
 					</tr>
 				</table>
@@ -103,14 +108,16 @@
 					<li><a id="comment" href="PreCommentController?id=${slika.id}">Comment</a></li>
 					<li><a id="addToFav" href="">Add to favorites</a></li>
 					<li><a id="follow" href="">Follow</a></li>
-					
+					<c:if test="${user.id==autor.id}">
+						<li><a id="settings" href="SettingsController?id=${slika.id}">Tag</a></li>
+					</c:if>
 					<li><a id="rate" href="CheckRateController?id=${slika.id}">Rate</a></li>
 				</ul>
 			</div>
 		</footer>
 	</div>
 </c:if>
-
+<input type="hidden" name="slikaId" value="${slika.id}">
 
 
 

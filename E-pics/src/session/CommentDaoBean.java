@@ -79,8 +79,8 @@ public class CommentDaoBean extends GenericDaoBean<Comment, Integer> implements
 	@Override
 	public List<Comment> lastComments(User user) {
 
-		Query q = em.createQuery("Select c from Comment c,User u,Photo p "
-				+ "where u=:user ");
+		Query q = em.createQuery("Select c from Comment c  "
+				+ "where c.userComments=:user ");
 				q.setParameter("user", user);
 		return q.getResultList();
 	}
