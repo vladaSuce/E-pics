@@ -48,8 +48,8 @@
             <div class="main wrapper clearfix">
                 <div class="nav3">
                     <ul>
-                        <li><a id="addAlbum" href ="addAlbum.jsp">Add album</a></li>
-                        <li><a id="manageUploads" href="#">Manage own uploads</a></li>
+                        <li><a id="addAlbum" href ="album.jsp">Add album</a></li>
+                        <li><a id="manageUploads" href="manageUpload.jsp">Manage own uploads</a></li>
                         <li><a id="uploadPhoto" href="addPhoto.jsp">Upload a photo</a></li>
                         <li><a href="atpController?autor=${autor.id}">Authors top pics</a></li>
                         <li><a id="changePersonal" href="updatePersonalData.jsp">Change personal data</a></li>

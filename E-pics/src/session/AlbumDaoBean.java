@@ -62,7 +62,7 @@ public class AlbumDaoBean extends GenericDaoBean<Album, Integer> implements
 
 	@Override
 	public void remove(Album entity) {
-		// TODO Auto-generated method stub
+		em.remove(em.merge(entity));
 
 	}
 
@@ -85,10 +85,12 @@ public class AlbumDaoBean extends GenericDaoBean<Album, Integer> implements
 	}
 
 	@Override
-	public Album findById(int aId) {
-		Query q = em.createQuery("select x from Album x where x.id = :id "  );
+	public Album findById(Integer aId) {
+		Query q = em.createQuery("select x from Album x where x.id=:id "  );
 		q.setParameter("id", aId);
+		System.out.println(q.toString()+" querry");
 		List<Album> albums = q.getResultList();
+		System.out.println(albums.toString());
 		return albums.get(0);
 	}
 
