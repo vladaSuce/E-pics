@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="./AddPictureController" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+<form action="./SearchController" method="get"  accept-charset="UTF-8">
 		<table>
 
 			<tr>
@@ -39,8 +39,10 @@
 			</tr>
 			<tr>
 				<td>Photo size:</td>
-				<td><input type="checkbox" name="tags_allowed"
-					id="tags_allowed" value="true"></td>
+				<td><input type="number" name="sizeOd"
+					id="sizeOd" >size from</td>
+				<td><input type="number" name="sizeDo"
+					id="sizeDo" >size to</td>
 			</tr>
 
 	

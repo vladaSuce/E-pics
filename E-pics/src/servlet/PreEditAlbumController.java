@@ -45,7 +45,9 @@ public class PreEditAlbumController extends HttpServlet {
 		int albumID=Integer.parseInt(alubmIdString);
 		Album album = (Album)albumDao.findById(albumID);
 		request.setAttribute("tempAlbum", album);
-		response.sendRedirect("./album.jsp?edit=1");
+		request.setAttribute("edit", 1);
+		System.out.println(album.toString());
+		request.getRequestDispatcher("/album.jsp").forward(request, response);
 	}
 
 }

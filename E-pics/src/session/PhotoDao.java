@@ -16,5 +16,8 @@ public interface PhotoDao extends GenericDao<Photo, Integer> {
 	public void ratePhoto(int ocena,int idSlike);
 	public void updatePhoto(Photo photo);
 	public Photo findById(Integer id);
+	public List<Photo> findByUserCriteria(String imeAutora,
+			String prezimeAutora, String photoTitle, String photoDesc,
+			String tagName, String sizeOd, String sizeDo, boolean publicType);
 	
 }

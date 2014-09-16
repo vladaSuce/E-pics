@@ -54,6 +54,8 @@ public class RecentAcitvityController extends HttpServlet {
 		System.out.println(komentari.toString()+ " komentari");
 		request.setAttribute("recentComments", komentari);
 		request.getRequestDispatcher("./recentActivity.jsp").forward(request, response);
+		
+		
 	}
 
 }

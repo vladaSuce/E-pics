@@ -32,7 +32,7 @@ import static javax.persistence.CascadeType.ALL;
 
 @NamedQuery(name = "findAllPicturesByUserIdPublicOrNot", query = "SELECT pic  FROM User u,Photo pic,Album a "
 	    		
-	    		+" WHERE u.id = :id AND pic.photosAlbums=a AND a.user=u AND pic.Public = :publicPicture")})
+	    		+" WHERE u.id = :id AND pic.photosAlbums=a AND a.user=u AND pic.publicType = :publicPicture")})
 
 public class Photo extends Image implements Serializable {
 	/**
@@ -43,8 +43,8 @@ public class Photo extends Image implements Serializable {
 	protected String title;
 	@Column(name = "description", unique = false, nullable = true)
 	protected String description;
-	@Column(name = "public", unique = false, nullable = true)
-	protected boolean Public;
+	@Column(name = "publicType", unique = false, nullable = true)
+	protected boolean publicType;
 	@Column(name = "tags_allowed", unique = false, nullable = true)
 	protected boolean tagsAllowed;
 	@Column(name = "notes_allowed", unique = false, nullable = true)
@@ -91,12 +91,12 @@ public class Photo extends Image implements Serializable {
 		this.description = description;
 	}
 
-	public boolean getPublic() {
-		return Public;
+	public boolean getPublicType() {
+		return publicType;
 	}
 
-	public void setPublic(boolean public1) {
-		Public = public1;
+	public void setPublicType(boolean public1) {
+		publicType = public1;
 	}
 
 	public boolean getTagsAllowed() {
@@ -202,7 +202,7 @@ public class Photo extends Image implements Serializable {
 	@Override
 	public String toString() {
 		return super.getLocation() + "Photo [title=" + title + ", description=" + description
-				+ ", Public=" + Public + ", tagsAllowed=" + tagsAllowed
+				+ ", Public=" + publicType + ", tagsAllowed=" + tagsAllowed
 				+ ", notesAllowed=" + notesAllowed + ", commentsAllowed="
 				+ commentsAllowed + ", rating=" + rating
 				+ ", thumbnailLocation=" + thumbnailLocation + "]";

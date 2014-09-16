@@ -47,6 +47,9 @@ public class UpdatePersonalDataServlet extends HttpServlet {
 		else
 			usr.setGender(Gender.Female);
 		
+		
+		String parm = request.getParameter("notifications");
+		System.out.println(parm);
 		if(request.getParameter("notifications")!=null)
 			usr.setEmailNotifications(true);
 		else

@@ -34,8 +34,8 @@ public class Album implements Serializable {
 	protected String title;
 	@Column(name = "description", nullable = true, unique = false)
 	protected String description;
-	@Column(name = "public", nullable = true, unique = false)
-	protected boolean Public;
+	@Column(name = "publicType", nullable = true, unique = false)
+	protected boolean publicType;
 	@ManyToOne(fetch = FetchType.EAGER)
 	protected User user;
 	
@@ -73,12 +73,12 @@ public class Album implements Serializable {
 		this.description = description;
 	}
 
-	public boolean getPublic() {
-		return Public;
+	public boolean getPublicType() {
+		return publicType;
 	}
 
-	public void setPublic(boolean public1) {
-		Public = public1;
+	public void setPublicType(boolean public1) {
+		publicType = public1;
 	}
 	
 
@@ -109,7 +109,7 @@ public class Album implements Serializable {
 	@Override
 	public String toString() {
 		return "Album [id=" + id + ", title=" + title + ", description="
-				+ description + ", Public=" + Public + "]";
+				+ description + ", publicType=" + publicType + "]";
 	}
 
 }

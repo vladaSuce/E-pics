@@ -190,4 +190,12 @@
 		<servlet-name>PreEditAlbumController</servlet-name>
 		<url-pattern>/PreEditAlbumController</url-pattern>
 	</servlet-mapping>
+				<servlet>
+		<servlet-name>SearchController</servlet-name>
+		<servlet-class>servlet.SearchController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchController</servlet-name>
+		<url-pattern>/SearchController</url-pattern>
+	</servlet-mapping>
 </web-app>

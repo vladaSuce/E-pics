@@ -111,11 +111,15 @@ public class UserDaoBean extends GenericDaoBean<User, Integer> implements UserDa
 		return retVal;
 	}
 	public User findUserByPic(int id_pic){
-		Query q= em.createQuery("SELECT u from User u,Photo p,Album a where a.user=u and p.photosAlbums=a "
-				+ "and p.id = :id");
+		String sqlSelect = "select u from Photo p  "
+				+ "LEFT JOIN p.tagsPhotos t"
+				+ "LEFT JOIN p.photosAlbums a "
+				+ "LEFT JOIN a.user u "
+				+ "where p.id=:id";
+		Query q= em.createQuery(sqlSelect);
 		q.setParameter("id", id_pic);
 		List<User>users=q.getResultList();
-		
+		System.out.println(users.toString());
 			return users.get(0);
 		
 	}

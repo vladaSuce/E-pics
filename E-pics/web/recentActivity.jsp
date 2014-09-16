@@ -14,7 +14,7 @@
 		<tr>
 			<c:forEach items="${recentComments}" var="comment">
 				<tr>
-				<td>${comment.title} ${comment.contents} ${comment.photoComment.id} 
+				<td> Title: ${comment.title} </br> Content: ${comment.contents}</br> ${comment.photoComment.id} 
 				<a href="./PictureController?id=${comment.photoComment.id}">Link ka slici</a>
 				</td>
 				</tr>

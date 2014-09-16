@@ -88,9 +88,9 @@ public class AddPictureController extends HttpServlet {
 					
 					if(name.equals("photoPublic"))
 						if(value!=null)
-							photo.setPublic(true);
+							photo.setPublicType(true);
 						else
-							photo.setPublic(false);
+							photo.setPublicType(false);
 					
 					if(name.equals("comments_allowed"))
 						if(value!=null)
@@ -129,7 +129,7 @@ public class AddPictureController extends HttpServlet {
 					
 					if (sizeInBytes != 0) {
 						String lokacija = getServletContext().getRealPath("") + "/img/" + filename;
-						
+						String lokacijaThumb = getServletContext().getRealPath("") + "/img/thumb" + filename;
 						File uploadedFile = new File(lokacija);
 						
 						item.write(uploadedFile);
@@ -140,6 +140,10 @@ public class AddPictureController extends HttpServlet {
 						double bytes = uploadedFile.length();
 						double kilobytes = (bytes /	1024);
 						photo.setSize(kilobytes);
+						BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+						img.createGraphics().drawImage(bimg.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH),0,0,null);
+						ImageIO.write(img, "jpg", new File(lokacijaThumb));
+						photo.setThumbnailLocation("/img/thumb"+filename);
 					}
 				}
 			}

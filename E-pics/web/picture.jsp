@@ -63,7 +63,7 @@
 						<td><a
 							href="<%=request.getContextPath()%>/IndexController?autor=${vlasnikSlike.id }">
 								${vlasnikSlike.emailAdress }</a></td>
-								<c:if test="${user.id==autor.id && user!=null}">
+								<c:if test="${user.id==vlasnikSlike.id && user!=null}">
 						<td><a href="./DeletePictureController?slikaId=${slika.id}">delete picture</a></td>
 					</c:if>
 					</tr>
@@ -75,7 +75,7 @@
 					<table>
 						<tr>
 							<td>${tag.text}</td>
-							<c:if test="${user.id==autor.id && user!=null}">
+							<c:if test="${user.id==vlasnikSlike.id && user!=null}">
 								<td><a href="./DeleteTagController?tagId=${tag.id}&slikaId=${slika.id}">delete
 										tag</a></td>
 							</c:if>
@@ -88,7 +88,7 @@
 						
 						<tr>
 							<td>${komentar.contents}</td>
-							<c:if test="${user.id==autor.id && user!=null}">
+							<c:if test="${user.id==vlasnikSlike.id && user!=null}">
 							<td><a
 								href="<%=request.getContextPath()%>/IndexController?autor=${komentar.userComments.id}">${komentar.userComments.emailAdress}</a></td>
 							<td><a

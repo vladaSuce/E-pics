@@ -51,7 +51,7 @@ public class AddAlbumController extends HttpServlet {
 		Album alb=new Album();
 		alb.setTitle(albumTitle);
 		alb.setDescription(albumDesc);
-		alb.setPublic(public1);
+		alb.setPublicType(public1);
 		alb.setUser((User)request.getSession().getAttribute("user"));
 		List<String> greske = new ArrayList<String>();
 		

@@ -85,7 +85,7 @@ public class PhotoDaoBean extends GenericDaoBean<Photo, Integer> implements Phot
 	@Override
 	public List<Photo> findPublicNewestPics() {
 		String upit = "Select pic from Photo pic "
-						+ " WHERE pic.Public = true "
+						+ " WHERE pic.publicType = true "
 						+ " ORDER BY pic.uploadDate desc ";
 		Query q = em.createQuery(upit).setMaxResults(15);
 		List<Photo>photos=q.getResultList();
@@ -104,6 +104,68 @@ public class PhotoDaoBean extends GenericDaoBean<Photo, Integer> implements Phot
 	}
 	public void deletePhoto(Photo photo){
 		em.remove(em.merge(photo));
+	}
+
+	@Override
+	public List<Photo> findByUserCriteria(String imeAutora,
+			String prezimeAutora, String photoTitle, String photoDesc,
+			String tagName, String sizeOd, String sizeDo, boolean publicType) {
+		String sqlSelect = "select p from Photo p  "
+				+ "LEFT JOIN p.tagsPhotos t"
+				+ "LEFT JOIN p.photosAlbums a "
+				+ "LEFT JOIN a.user u "
+				+ "where p.id >0 ";
+		if(imeAutora!=null && imeAutora.length()>0)
+			sqlSelect += " AND LOWER(u.firstName) LIKE:imeAutora";
+
+		if(prezimeAutora!=null && prezimeAutora.length()>0)
+			sqlSelect += " AND LOWER(u.lastName) LIKE :prezimeAutora";
+			
+		if(photoTitle!=null && photoTitle.length()>0)
+			sqlSelect += " AND LOWER(p.title) LIKE:photoTitle" ;
+		
+		if(photoDesc!=null && photoDesc.length()>0)
+			sqlSelect += " AND LOWER(p.description) LIKE:photoDesc" ;
+		
+		if(photoDesc!=null && photoDesc.length()>0)
+			sqlSelect += " AND LOWER(t.text) LIKE:tagName" ;
+		
+		if(sizeOd!=null && sizeOd.length()>0)
+			sqlSelect += " AND p.size >=:sizeOd";
+		
+		if(sizeDo!=null && sizeDo.length()>0)
+			sqlSelect += " AND p.size <=:sizeDo";
+		
+		if(!publicType){
+			sqlSelect += " AND p.publicType=:publicType " ;
+			sqlSelect += " AND a.publicType=:publicType " ;
+		}
+		Query q = em.createQuery(sqlSelect);
+		if(imeAutora!=null && imeAutora.length()>0)
+			q.setParameter("imeAutora", '%'+imeAutora.toLowerCase()+'%') ;
+
+		if(prezimeAutora!=null && prezimeAutora.length()>0)
+			q.setParameter("prezimeAutora",'%'+ prezimeAutora.toLowerCase()+'%') ;
+			
+		if(photoTitle!=null && photoTitle.length()>0)
+			q.setParameter("photoTitle", '%'+photoTitle.toLowerCase()+'%') ;
+		
+		if(photoDesc!=null && photoDesc.length()>0)
+			q.setParameter("photoDesc",'%'+ photoDesc.toLowerCase()+'%') ;
+		
+		if(photoDesc!=null && photoDesc.length()>0)
+			q.setParameter("tagName",'%'+ tagName.toLowerCase()+'%') ;
+		if(!publicType){
+			q.setParameter("publicType", !publicType) ;
+
+			
+		}
+		if(sizeOd!=null && sizeOd.length()>0)
+			q.setParameter("sizeOd", Double.parseDouble(sizeOd)) ;
+		
+		if(sizeDo!=null && sizeDo.length()>0)
+			q.setParameter("sizeDo", Double.parseDouble(sizeDo)) ;
+		return q.getResultList();
 	}
 
 }
