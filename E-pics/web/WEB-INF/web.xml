@@ -206,4 +206,12 @@
 		<servlet-name>SettingsController</servlet-name>
 		<url-pattern>/SettingsController</url-pattern>
 	</servlet-mapping>
+						<servlet>
+		<servlet-name>EditPictureController</servlet-name>
+		<servlet-class>servlet.EditPictureController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditPictureController</servlet-name>
+		<url-pattern>/EditPictureController</url-pattern>
+	</servlet-mapping>
 </web-app>

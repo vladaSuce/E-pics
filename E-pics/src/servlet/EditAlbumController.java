@@ -8,20 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entity.Photo;
-import session.PhotoDao;
+import entity.Album;
+import entity.User;
+import session.AlbumDao;
 
 /**
- * Servlet implementation class SettingsController
+ * Servlet implementation class EditAlbumController
  */
-public class SettingsController extends HttpServlet {
+public class EditAlbumController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    @EJB
-    private PhotoDao photoDao;
+       @EJB
+       private AlbumDao albumDao;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SettingsController() {
+    public EditAlbumController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,14 +40,21 @@ public class SettingsController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String idSlikeString = request.getParameter("id");
-		int idSlike = Integer.parseInt(idSlikeString);
-		Photo photo = photoDao.findById(idSlike);
-		
-		request.setAttribute("photo", photo);
-		request.setAttribute("edit", 1);
-		request.getRequestDispatcher("/addPhoto.jsp").forward(request, response);
-		
+		String idString = request.getParameter("id");
+		User user = (User)request.getSession().getAttribute("user");
+		int id=Integer.parseInt(idString);
+		Album album = albumDao.findById(id);
+		String albumDesc = request.getParameter("albumDesc");
+		String albumTitle = request.getParameter("albumTitle");
+		album.setTitle(albumTitle);
+		album.setDescription(albumDesc);
+		String albumPublic = request.getParameter("albumPublic");
+		if (albumPublic!=null)
+			album.setPublicType(true);
+		else
+			album.setPublicType(false);
+		albumDao.merge(album);
+		response.sendRedirect("./IndexController?autor="+user.getId());
 	}
 
 }

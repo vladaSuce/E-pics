@@ -80,7 +80,7 @@
 	</c:if>
 
 	<c:if test="${edit==1}">
-		<form action="./EditPictureController" method="post"
+		<form action="./EditPictureController?id=${photo.id}" method="post"
 			accept-charset="UTF-8">
 			<table>
 				<tr>
