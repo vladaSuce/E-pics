@@ -85,7 +85,8 @@ public class AddPictureController extends HttpServlet {
 					
 					if(name.equals("photoTitle"))
 						photo.setTitle(value);
-					
+					if(name.equals("photoDecs"))
+						photo.setDescription(value);
 					if(name.equals("photoPublic"))
 						if(value!=null)
 							photo.setPublicType(true);

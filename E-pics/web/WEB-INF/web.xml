@@ -198,4 +198,12 @@
 		<servlet-name>SearchController</servlet-name>
 		<url-pattern>/SearchController</url-pattern>
 	</servlet-mapping>
+					<servlet>
+		<servlet-name>SettingsController</servlet-name>
+		<servlet-class>servlet.SettingsController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SettingsController</servlet-name>
+		<url-pattern>/SettingsController</url-pattern>
+	</servlet-mapping>
 </web-app>

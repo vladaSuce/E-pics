@@ -5,8 +5,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 <html>
 <head>
 <title>E- pics updatePersonalData</title>
@@ -38,18 +38,21 @@ and open the template in the editor.
 				<option value="Male"
 					<c:if test="${user.gender=='Male'}">
                 		selected
-                	</c:if> > Male</option>
+                	</c:if>>
+					Male</option>
 				<option value="Female"
 					<c:if test="${user.gender=='Female'}">
                 		selected
-                	</c:if> >Female</option>
+                	</c:if>>Female</option>
 			</select>
 		</p>
 		<p>
-			<label for="email_notification">Email notifications </label> <input
-				id="notifications" name="notifications" type="checkbox"
-				<c:if test="${user.emailNotifications==true }">cheked="checked"</c:if>
-				/>
+			<label for="email_notification">Email notifications
+				${user.emailNotifications}</label> <input id="notifications"
+				 name="notifications" type="checkbox"
+				<c:if test="${user.emailNotifications==true}"> checked="checked"</c:if> />
+				
+
 		</p>
 		<p>
 			<button name="ChangeOK" value="Change" type="submit">Accept

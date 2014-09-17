@@ -17,63 +17,121 @@
 			<li>${greska}</li>
 		</c:forEach>
 	</ul>
-	<form action="./AddPictureController" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-		<table>
+	<c:if test="${edit!=1}">
+		<form action="./AddPictureController" method="post"
+			enctype="multipart/form-data" accept-charset="UTF-8">
+			<table>
 
-			<tr>
-				<td>Photo:</td>
-				<td><input type="file" name="newPhoto"
-					accept="image/gif, image/jpeg, image/jpg, image/png"></td>
-			</tr>
+				<tr>
+					<td>Photo:</td>
+					<td><input type="file" name="newPhoto"
+						accept="image/gif, image/jpeg, image/jpg, image/png"></td>
+				</tr>
 
-			<tr>
-				<td>Title:</td>
-				<td><input type="text" name="photoTitle" id="photoTitle"
-					required="required"></td>
-			</tr>
-			<tr>
-				<td>Description:</td>
-				<td><input type="text" name="photoDecs" id="photoDecs"></td>
-			</tr>
-			<tr>
-				<td>Public:</td>
-				<td><input type="checkbox" name="photoPublic" id="photoPublic"
-					value="true"></td>
-			</tr>
-			<tr>
-				<td>Comments allowed:</td>
-				<td><input type="checkbox" name="comments_allowed"
-					id="comments_allowed" value="true"></td>
-			</tr>
-			<tr>
-				<td>Notes allowed:</td>
-				<td><input type="checkbox" name="notes_allowed"
-					id="notess_allowed" value="true"></td>
-			</tr>
-			<tr>
-				<td>Tags allowed:</td>
-				<td><input type="checkbox" name="tags_allowed"
-					id="tags_allowed" value="true"></td>
-			</tr>
+				<tr>
+					<td>Title:</td>
+					<td><input type="text" name="photoTitle" id="photoTitle"
+						required="required"></td>
+				</tr>
+				<tr>
+					<td>Description:</td>
+					<td><input type="text" name="photoDecs" id="photoDecs"></td>
+				</tr>
+				<tr>
+					<td>Public:</td>
+					<td><input type="checkbox" name="photoPublic" id="photoPublic"
+						value="true"></td>
+				</tr>
+				<tr>
+					<td>Comments allowed:</td>
+					<td><input type="checkbox" name="comments_allowed"
+						id="comments_allowed" value="true"></td>
+				</tr>
+				<tr>
+					<td>Notes allowed:</td>
+					<td><input type="checkbox" name="notes_allowed"
+						id="notess_allowed" value="true"></td>
+				</tr>
+				<tr>
+					<td>Tags allowed:</td>
+					<td><input type="checkbox" name="tags_allowed"
+						id="tags_allowed" value="true"></td>
+				</tr>
 
-			<tr>
-				<td>Album:</td>
-				<td><select name="album11"> 
-						<c:forEach items="${albums}" var="grupa">
-							<option value="${grupa.id}">${grupa.title}</option>
+				<tr>
+					<td>Album:</td>
+					<td><select name="album11">
+							<c:forEach items="${albums}" var="grupa">
+								<option value="${grupa.id}">${grupa.title}</option>
 
-						</c:forEach>
-				</select></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
+							</c:forEach>
+					</select></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
 
-				<td><input type="submit" name="submit"></td>
-			</tr>
-		</table>
-	</form>
+					<td><input type="submit" name="submit"></td>
+				</tr>
+			</table>
+		</form>
+	</c:if>
+
+	<c:if test="${edit==1}">
+		<form action="./EditPictureController" method="post"
+			accept-charset="UTF-8">
+			<table>
+				<tr>
+					<td>Title:</td>
+					<td><input type="text" name="photoTitle" id="photoTitle"
+						required="required" value="${photo.title}"></td>
+				</tr>
+				<tr>
+					<td>Description:</td>
+					<td><input type="text" name="photoDecs" id="photoDecs" value="${photo.description}"></td>
+				</tr>
+				<tr>
+					<td>Public:</td>
+					<td><input type="checkbox" name="photoPublic" id="photoPublic"
+					<c:if test="${photo.publicType==true }"> checked="checked"</c:if>	/></td> 
+				</tr>
+				<tr>
+					<td>Comments allowed:</td>
+					<td><input type="checkbox" name="comments_allowed"
+						id="comments_allowed" <c:if test="${photo.commentsAllowed==true }"> checked="checked"</c:if>></td>
+				</tr>
+				<tr>
+					<td>Notes allowed:</td>
+					<td><input type="checkbox" name="notes_allowed"
+						id="notess_allowed" <c:if test="${photo.notesAllowed==true }"> checked="checked"</c:if>></td>
+				</tr>
+				<tr>
+					<td>Tags allowed:</td>
+					<td><input type="checkbox" name="tags_allowed"
+						id="tags_allowed" <c:if test="${photo.tagsAllowed==true }"> checked="checked"</c:if>></td>
+				</tr>
+
+				<tr>
+					<td>Album:</td>
+					<td><select name="album11">
+							<c:forEach items="${albums}" var="grupa">
+								<option value="${grupa.id}">${grupa.title}</option>
+
+							</c:forEach>
+					</select></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+
+					<td><input type="submit" name="submit"></td>
+				</tr>
+			</table>
+		</form>
+	</c:if>
 <body>
 </html>

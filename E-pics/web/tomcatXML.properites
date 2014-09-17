@@ -1,0 +1,24 @@
+--tomee.xml--
+<Resource id="My DataSource" type="DataSource">
+  JdbcDriver com.mysql.jdbc.Driver
+  JdbcUrl jdbc:mysql://localhost:3306/mbs2?autoReconnect=true&amp;useEncoding=true&amp;characterEncoding=UTF-8
+  UserName E13133
+  Password ftn
+  JtaManaged true
+</Resource>
+
+<Resource id="My Unmanaged DataSource" type="DataSource">
+  JdbcDriver com.mysql.jdbc.Driver
+  JdbcUrl jdbc:mysql://localhost:3306/mbs2?autoReconnect=true&amp;useEncoding=true&amp;characterEncoding=UTF-8
+  UserName E13133
+  Password ftn
+  JtaManaged false
+</Resource>
+-----------------------------------------	
+--server.xml--
+    <Connector port="8083" protocol="HTTP/1.1"
+			   URIEncoding="UTF-8"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+-------------------------------------------------------
+u lib strpati sve datoteke koje aplikacija koristi

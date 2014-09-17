@@ -76,7 +76,10 @@ public class CommentController extends HttpServlet {
 			getServletContext().getRequestDispatcher("//PictureController?id="+idPhoto).forward(request, response);
 		}
 		else {
-			getServletContext().getRequestDispatcher("//PreCommentController?id="+idPhoto).forward(request, response);
+			ArrayList greske =new ArrayList();
+			greske.add("Komentarisanje slika nije dozvoljeno od strane autora");
+			request.setAttribute("greske", greske);
+			request.getRequestDispatcher("./PictureController?id="+p.getId()).forward(request, response);
 		}
 	}
 
